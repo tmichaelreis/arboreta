@@ -4,7 +4,9 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../rails_app/config/environment', __FILE__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
+
 require 'rspec/rails'
+require 'factory_bot_rails'
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate

@@ -10,15 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_11_173647) do
+ActiveRecord::Schema.define(version: 2018_10_11_215726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "arboreta_nodes", force: :cascade do |t|
+    t.integer "parent_id"
+  end
+
+  create_table "arboreta_trees", force: :cascade do |t|
+    t.integer "subject_id"
+    t.string "subject_type"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
-    t.integer "age", default: 0
+    t.integer "age", null: false
+    t.decimal "weight", precision: 5, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
