@@ -1,0 +1,6 @@
+.bundle/
+log/*.log
+pkg/
+spec/rails_app/log/*.log
+spec/rails_app/storage/
+spec/rails_app/tmp/
