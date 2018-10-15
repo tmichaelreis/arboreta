@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2018_10_15_170123) do
   enable_extension "plpgsql"
 
   create_table "arboreta_nodes", force: :cascade do |t|
-    t.text "data_inputs", default: [], array: true
+    t.jsonb "input_data", default: "{}"
     t.string "operator", null: false
     t.boolean "is_root", default: false
     t.boolean "is_leaf"

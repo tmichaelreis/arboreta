@@ -1,7 +1,7 @@
 class CreateArboretaNodes < ActiveRecord::Migration[5.2]
   def change
     create_table :arboreta_nodes do |t|
-      t.text :data_inputs, array: true, default: []
+      t.jsonb :input_data, default: '{}'
       t.string :operator, null: false
 
       t.boolean :is_root, default: false
