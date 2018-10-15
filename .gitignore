@@ -7,3 +7,5 @@ spec/rails_app/tmp/
 
 # Remove Gemfile.lock because this is packaged as a gem
 Gemfile.lock
+
+.byebug_history

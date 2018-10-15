@@ -10,18 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_11_215726) do
+ActiveRecord::Schema.define(version: 2018_10_15_170123) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "arboreta_nodes", force: :cascade do |t|
-    t.integer "parent_id"
+    t.text "data_inputs", default: [], array: true
+    t.string "operator", null: false
+    t.boolean "is_root", default: false
+    t.boolean "is_leaf"
+    t.integer "positive_child_id"
+    t.integer "negative_child_id"
+    t.bigint "arboreta_tree_id"
+    t.index ["arboreta_tree_id"], name: "index_arboreta_nodes_on_arboreta_tree_id"
   end
 
   create_table "arboreta_trees", force: :cascade do |t|
     t.integer "subject_id"
-    t.string "subject_type"
+    t.integer "subject_type"
+    t.string "tree_name"
   end
 
   create_table "users", force: :cascade do |t|
