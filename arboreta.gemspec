@@ -28,4 +28,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec-rails', '~> 3.8'
   s.add_development_dependency 'factory_bot_rails'
   s.add_development_dependency 'pg', '~> 0.18'
+  s.add_development_dependency 'annotate'
 end

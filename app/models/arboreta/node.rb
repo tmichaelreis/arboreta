@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: arboreta_nodes
+#
+#  id                :integer          not null, primary key
+#  input_data        :jsonb
+#  operator          :string           not null
+#  is_root           :boolean          default(FALSE)
+#  is_leaf           :boolean
+#  positive_child_id :integer
+#  negative_child_id :integer
+#  arboreta_tree_id  :integer
+#
+
 module Arboreta
   class Node < ApplicationRecord
     belongs_to :arboreta_tree, class_name: 'Arboreta::Tree'
@@ -12,20 +26,19 @@ module Arboreta
 
     def execute!
       if is_leaf?
-        Arboreta.send(operator.downcase, input_data)
+        # TODO: Execute terminal actions
+        Arboreta.nothing
       else
-        Arboreta.send(operator.downcase, left, right) ? execute_positive : execute_negative
+        Arboreta.send(operator.downcase, *statements) ? execute_positive : execute_negative
       end
     end
 
     private
 
-    def left
-      subject.send(input_data['left']['method'], *input_data['left']['args'])
-    end
-
-    def right
-      subject.send(input_data['right']['method'], *input_data['right']['args'])
+    def statements
+      input_data.map do |data|
+        Arboreta::Statement.new(data.merge({'subject' => self.subject}))
+      end
     end
 
     def execute_positive

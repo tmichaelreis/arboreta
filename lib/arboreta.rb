@@ -1,12 +1,14 @@
 require "arboreta/engine"
+require "arboreta/statement"
+require "arboreta/comparisons"
 
 module Arboreta
   def self.and(*args)
-    args.all?
+    args.map(&:execute!).all?
   end
 
   def self.or(*args)
-    args.any?
+    args.map(&:execute!).any?
   end
 
   def self.nothing(*args)

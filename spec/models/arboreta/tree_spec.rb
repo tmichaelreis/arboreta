@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: arboreta_trees
+#
+#  id           :integer          not null, primary key
+#  subject_id   :integer
+#  subject_type :integer
+#  tree_name    :string
+#
+
 require 'spec_helper'
 
 RSpec.describe Arboreta::Tree, type: :model do

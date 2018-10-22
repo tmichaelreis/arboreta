@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: arboreta_nodes
+#
+#  id                :integer          not null, primary key
+#  input_data        :jsonb
+#  operator          :string           not null
+#  is_root           :boolean          default(FALSE)
+#  is_leaf           :boolean
+#  positive_child_id :integer
+#  negative_child_id :integer
+#  arboreta_tree_id  :integer
+#
+
 require 'spec_helper'
 
 RSpec.describe Arboreta::Node do
@@ -24,26 +38,28 @@ RSpec.describe Arboreta::Node do
   end
 
   describe 'leaf node' do
-    it 'should be valid without children' do
-      expect(Arboreta::Node.new(operator: 'NOTHING', is_leaf: true, arboreta_tree: tree)).to be_valid
+    it 'should be valid without operator' do
+      expect(Arboreta::Node.new(is_leaf: true, arboreta_tree: tree)).to be_valid
     end
   end
 
   describe 'chained execution' do
     it 'should execute positive child node if positive outcome' do
-      positive_child = Arboreta::Node.create(operator: 'NOTHING', is_leaf: true, arboreta_tree: tree)
-      negative_child = Arboreta::Node.create(operator: 'NOTHING', is_leaf: true, arboreta_tree: tree)
+      positive_child = Arboreta::Node.create(is_leaf: true, arboreta_tree: tree)
+      negative_child = Arboreta::Node.create(is_leaf: true, arboreta_tree: tree)
 
-      truthy_inputs = {
-        left: {
-          method: 'respond_to?',
-          args: ['name']
+      truthy_inputs = [
+        {
+          comparison: 'eq',
+          left_method: 'name',
+          right_method: 'name'
         },
-        right: {
-          method: 'respond_to?',
-          args: ['age']
-        } 
-      }
+        {
+          comparison: 'gt',
+          left_method: 'weight',
+          right_method: 'goal_weight'
+        }
+      ]
 
       node = FactoryBot.create(:arboreta_node,
                                arboreta_tree: tree,
@@ -60,16 +76,18 @@ RSpec.describe Arboreta::Node do
       positive_child = Arboreta::Node.create(operator: 'NOTHING', is_leaf: true, arboreta_tree: tree)
       negative_child = Arboreta::Node.create(operator: 'NOTHING', is_leaf: true, arboreta_tree: tree)
 
-      falsey_inputs = {
-        left: {
-          method: 'respond_to?',
-          args: ['name']
+      falsey_inputs = [
+        {
+          comparison: 'eq',
+          left_method: 'name',
+          right_method: 'name'
         },
-        right: {
-          method: 'respond_to?',
-          args: ['foobar']
-        } 
-      }
+        {
+          comparison: 'lt',
+          left_method: 'weight',
+          right_method: 'goal_weight'
+        }
+      ]
 
       node = FactoryBot.create(:arboreta_node,
                                arboreta_tree: tree,

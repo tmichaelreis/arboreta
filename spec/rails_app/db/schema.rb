@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2018_10_15_170123) do
 
   create_table "arboreta_nodes", force: :cascade do |t|
     t.jsonb "input_data", default: "{}"
-    t.string "operator", null: false
+    t.string "operator", default: "AND", null: false
     t.boolean "is_root", default: false
     t.boolean "is_leaf"
     t.integer "positive_child_id"
