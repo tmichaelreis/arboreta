@@ -29,7 +29,7 @@ module Arboreta
         # TODO: Execute terminal actions
         Arboreta.nothing
       else
-        Arboreta.send(operator.downcase, *statements) ? execute_positive : execute_negative
+        Arboreta::Operators.send(operator.downcase, *statements) ? execute_positive : execute_negative
       end
     end
 
