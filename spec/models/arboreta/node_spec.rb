@@ -51,8 +51,8 @@ RSpec.describe Arboreta::Node do
       truthy_inputs = [
         {
           comparison: 'eq',
-          left_method: 'name',
-          right_method: 'name'
+          left_method: 'weight',
+          right_method: 'weight'
         },
         {
           comparison: 'gt',
@@ -79,8 +79,8 @@ RSpec.describe Arboreta::Node do
       falsey_inputs = [
         {
           comparison: 'eq',
-          left_method: 'name',
-          right_method: 'name'
+          left_method: 'weight',
+          right_method: 'weight'
         },
         {
           comparison: 'lt',
