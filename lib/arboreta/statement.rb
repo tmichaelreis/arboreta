@@ -14,11 +14,11 @@ module Arboreta
     end
 
     def left
-      subject.send(left_method)
+      subject.arboreta_send(left_method)
     end
 
     def right
-      subject.send(right_method)
+      subject.arboreta_send(right_method)
     end
 
   end

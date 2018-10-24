@@ -3,6 +3,19 @@ module Arboreta
 
     extend ActiveSupport::Concern
 
+    included do
+
+      def arboreta_send(method, *args)
+        raise Arboreta::MethodNotPermittedError unless self.is_method_on_whitelist?(method)
+        self.send(method, *args)
+      end
+
+      def is_method_on_whitelist?(method)
+        self.class.arboreta_whitelist.include?(method.to_sym)
+      end
+
+    end
+
     class_methods do
 
       def arboreta_methods(*method_list)

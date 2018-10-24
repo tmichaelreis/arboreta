@@ -5,4 +5,8 @@ require "arboreta/comparisons"
 require "arboreta/active_record"
 
 module Arboreta
+
+  class MethodNotPermittedError < ::StandardError
+  end
+
 end
