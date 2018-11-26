@@ -4,7 +4,7 @@
 #
 #  id                :integer          not null, primary key
 #  input_data        :jsonb
-#  operator          :string           not null
+#  operator          :string           default("AND"), not null
 #  is_root           :boolean          default(FALSE)
 #  is_leaf           :boolean
 #  positive_child_id :integer

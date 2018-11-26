@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     arboreta (0.1.0)
+      amoeba
       rails (~> 5.2.1)
 
 GEM
@@ -48,6 +49,8 @@ GEM
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    amoeba (3.1.0)
+      activerecord (>= 3.2.6)
     annotate (2.7.2)
       activerecord (>= 3.2, < 6.0)
       rake (>= 10.4, < 13.0)
@@ -71,7 +74,7 @@ GEM
     loofah (2.2.2)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
-    mail (2.7.0)
+    mail (2.7.1)
       mini_mime (>= 0.1.1)
     marcel (0.3.3)
       mimemagic (~> 0.3.2)

@@ -6,6 +6,7 @@
 #  subject_id   :integer
 #  subject_type :integer
 #  tree_name    :string
+#  template     :boolean          default(FALSE)
 #
 
 require 'spec_helper'
@@ -25,4 +26,5 @@ RSpec.describe Arboreta::Tree, type: :model do
   it 'should allow user as the subject' do
     expect(Arboreta::Tree.new(subject: user)).to be_valid
   end
-end 
+
+end

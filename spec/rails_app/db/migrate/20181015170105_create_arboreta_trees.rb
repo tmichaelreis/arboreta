@@ -5,6 +5,8 @@ class CreateArboretaTrees < ActiveRecord::Migration[5.2]
       t.integer :subject_type
 
       t.string :tree_name
+
+      t.boolean :template, default: false
     end
   end
 end

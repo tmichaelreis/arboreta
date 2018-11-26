@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2018_10_15_170123) do
     t.integer "subject_id"
     t.integer "subject_type"
     t.string "tree_name"
+    t.boolean "template", default: false
   end
 
   create_table "users", force: :cascade do |t|
